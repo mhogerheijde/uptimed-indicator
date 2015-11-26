@@ -23,5 +23,7 @@ setup(
             'uptimed-indicator = uptime_indicator.indicator:main',
         ],
     },
-    install_requires=[],
+    install_requires=[
+        'termcolor'
+    ],
 )

@@ -15,8 +15,8 @@ class TestIndicator(unittest.TestCase):
         expect2 = "25:42:01"
 
         # CALL
-        result1 = fromatAsHoursMinutes(delta1)
-        result2 = fromatAsHoursMinutes(delta2)
+        result1 = fromatAsHoursMinutes(delta1, includeSeconds=True)
+        result2 = fromatAsHoursMinutes(delta2, includeSeconds=True)
 
         # VERIFY
         self.assertEqual(result1, expect1)
@@ -28,7 +28,7 @@ class TestIndicator(unittest.TestCase):
         expect = "00:00:00"
 
         # CALL
-        result = fromatAsHoursMinutes(delta)
+        result = fromatAsHoursMinutes(delta, includeSeconds=True)
 
         # VERIFY
         self.assertEqual(result, expect)
@@ -42,8 +42,40 @@ class TestIndicator(unittest.TestCase):
         expect2 = "-44:30:03"
 
         # CALL
-        result1 = fromatAsHoursMinutes(delta1)
-        result2 = fromatAsHoursMinutes(delta2)
+        result1 = fromatAsHoursMinutes(delta1, includeSeconds=True)
+        result2 = fromatAsHoursMinutes(delta2, includeSeconds=True)
+
+        # VERIFY
+        self.assertEqual(result1, expect1)
+        self.assertEqual(result2, expect2)
+
+    def test_formatAsDecimalFormatsPositiveDelta(self):
+        # SETUP
+        delta1 = timedelta(hours=1, minutes=33, seconds=1)
+        expect1 = "1.55"
+
+        delta2 = timedelta(days=1, hours=1, minutes=42, seconds=1)
+        expect2 = "25.70"
+
+        # CALL
+        result1 = fromatAsDecimalHours(delta1)
+        result2 = fromatAsDecimalHours(delta2)
+
+        # VERIFY
+        self.assertEqual(result1, expect1)
+        self.assertEqual(result2, expect2)
+
+    def test_formatAsDecimalFormatsNegativeDelta(self):
+        # SETUP
+        delta1 = timedelta(hours=-1, minutes=42, seconds=1)
+        expect1 = "-0.30"
+
+        delta2 = timedelta(days=-11, hours=1, minutes=42, seconds=1)
+        expect2 = "-262.30"
+
+        # CALL
+        result1 = fromatAsDecimalHours(delta1)
+        result2 = fromatAsDecimalHours(delta2)
 
         # VERIFY
         self.assertEqual(result1, expect1)
