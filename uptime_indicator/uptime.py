@@ -14,7 +14,10 @@ class UptimeRecords(object):
         pass
 
     # TODO: This method does not correctly handle day-boundaries
-    def read(self):
+    def read(self, offsets):
+
+        print offsets
+
         with open(UPRECORDS_FILE, 'r') as csvfile:
             data = csv.DictReader(csvfile, fieldnames=FIELDNAMES, delimiter=':')
 
@@ -35,7 +38,9 @@ class UptimeRecords(object):
                     if (downDateTime < existingDownDateTime):
                         newDownDateTime = existingDownDateTime
 
-                newUptimeDelta = newDownDateTime - newBootDateTime
+                offsetDelta = offsets[bootDate] if bootDate in offsets else timedelta()
+                newUptimeDelta = newDownDateTime - newBootDateTime + offsetDelta
+
                 records[bootDate] = (newBootDateTime, newDownDateTime, newUptimeDelta)
 
         return OrderedDict(sorted(records.iteritems()))
