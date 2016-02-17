@@ -1,6 +1,6 @@
 import unittest
 
-from uptime_indicator.indicator import *
+from uptime_indicator.cli import *
 from datetime import timedelta
 
 

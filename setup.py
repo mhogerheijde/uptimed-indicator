@@ -2,6 +2,7 @@ from setuptools import setup
 
 import uptime_indicator
 
+# Also requires python-appindicator
 
 setup(
     name = uptime_indicator.__name__,
@@ -20,7 +21,7 @@ setup(
     test_suite = 'tests',
     entry_points = {
         'console_scripts': [
-            'uptimed-indicator = uptime_indicator.indicator:main',
+            'uptime-records = uptime_indicator.cli:main',
         ],
     },
     install_requires=[
