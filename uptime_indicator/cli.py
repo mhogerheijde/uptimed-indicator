@@ -132,7 +132,7 @@ def fromatAsDecimalHours(delta):
 
 def uptimeKeyForDate(date):
     (year, weeknumber, _) = date.isocalendar()
-    return "{}-{}".format(year, weeknumber)
+    return "{0}-{1:02d}".format(year, weeknumber)
 
 
 def fromatAsHoursMinutes(delta, leadingPlusActive=False, includeSeconds=False):
